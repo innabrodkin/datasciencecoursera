@@ -1,4 +1,0 @@
-datasciencecoursera
-===================
-
-Coursera DataScience class
