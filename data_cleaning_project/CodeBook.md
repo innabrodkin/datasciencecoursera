@@ -7,14 +7,14 @@ This file describes the processing that the script run_analysis.R performs
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
-1. Read in "UCI HAR Dataset/activity_labels.txt" file to obtain information about
+*Step1. Read in "UCI HAR Dataset/activity_labels.txt" file to obtain information about
     activity labels and names. Give the columns meaningful names.
     This step produces activities table
     
 activities  - (6 x 2) table that contains activity labels and names as defined in "UCI HAR Dataset/activity_labels.txt"
 		file; this table is used to map the activity labels used in the datasets to the readable activity names
 
-2. Read in "./UCI HAR Dataset/features.txt" to obtain feature names for the features measured,
+*Step2. Read in "./UCI HAR Dataset/features.txt" to obtain feature names for the features measured,
     The seconds column of the table loaded gives the list of feature column names that both 
     train and test datasets contain.
     This step produces features table and featureNames vector
@@ -24,7 +24,7 @@ features - (561 x 2) table that contains the feature names as they are defined i
   
 featureNames - (1 x 561) vector of feature names that comes from features table
 
-3. Read in the train dataset, the activity vector and the subject vector corresponding 
+*Step3. Read in the train dataset, the activity vector and the subject vector corresponding 
    to the measurements recorded in the train data set. Combine the data loaded in this step
    with the featureNames to create  the labeled train dataset with descriptive column names.
    This step creates the following data objects:
@@ -38,7 +38,7 @@ trainSetLabeled - (2947 x 563) data frame that contains the train data set plus 
 trainSubjectLabels - (2947 x 1) vector of subject labels for the train set as defined in "UCI HAR Dataset/train/subject_train.txt"
 
 
-4. Read in the test dataset, the activity vector and the subject vector corresponding 
+*Step4. Read in the test dataset, the activity vector and the subject vector corresponding 
    to the measurements recorded in the test data set. Combine the data loaded in this step
    with the featureNames to create  the labeled test dataset with descriptive column names.
    This step creates the following data objects:
@@ -52,12 +52,12 @@ testSetLabeled - (2947 x 563) data frame that contains the test data set plus te
 testSubjectLabels - (2947 x 1) vector of subject labels for the test set as defined in "UCI HAR Dataset/test/subject_test.txt"
 
 
-5. Combine the labeled train dataset and the labeled test data set. This produces combinedDataSet
+*Step5. Combine the labeled train dataset and the labeled test data set. This produces combinedDataSet
 
 combinedDataSet - (10299 x 563) combined train and test data sets with the activity and subject columns included
                 before any extraction or manipulation is done 
 
-6. Extract the column names that contain "-mean()" and "-std()" suffix substrings out of the featureNames vector.
+*Step6. Extract the column names that contain "-mean()" and "-std()" suffix substrings out of the featureNames vector.
    Assumption here is that these suffixes identify the mean and standard deviation measurements.
    Note: the featureNames vector does contain some names that have the word Mean in the name itself but it is not clear
    that the feature at hand is realy a mean or some product of mean so I did not include these columns.
@@ -66,20 +66,20 @@ meanFeatures - (1 x 46) vector of feature names that contain "-mean()" substring
 
 stdFeatures - (1 x 33) vector of feature names that contain "-std()" substring
 
-7. Extract the ActivityLabel and Subject columns, plus meanFeatures and stdFeatures columns out of the 
+*Step7. Extract the ActivityLabel and Subject columns, plus meanFeatures and stdFeatures columns out of the 
    combinedDataSet and create a subset dataset. This produces meanAndDerivations dataset
    
 meansAndDeviations - (10299 x 81) this data frame is the subset of the combinedDataSet, it contains the ActivityLabel, 
                 Subject columns plus the columns with mean and standard deviation features. 
 
 
-8. Calculate the means of the extracted mean and std measurements columns aggregated by subject and activity.
+*Step8. Calculate the means of the extracted mean and std measurements columns aggregated by subject and activity.
    This step produces aggregatedSet
 
 aggregatedSet - (180 x 81) data frame that containes the aggregated data with means calculated and sorted 
                 by activity and subject just before I merge in the activity names
             
-9. Merge the activities table and the aggregatedSet, this operation brings in the descriptive activity names.
+*Step9. Merge the activities table and the aggregatedSet, this operation brings in the descriptive activity names.
    
    Note: I am keeping the ActivityLabel column as I believe it preserves integrity 
    with the original data set, and besides using integers for activity identifiers would
@@ -90,6 +90,6 @@ aggregatedSet - (180 x 81) data frame that containes the aggregated data with me
 
 newDataSet - (180 x 82) the new tidy data set just before it is written to the file
 
-10. Write the new data set to a file "TidyDataSet.txt" 
+*Step10. Write the new data set to a file "TidyDataSet.txt" 
 
 
