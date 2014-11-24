@@ -7,14 +7,14 @@ This file describes the processing that the script run_analysis.R performs
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
-1.  Read in "UCI HAR Dataset/activity_labels.txt" file to obtain information about
+1. Read in "UCI HAR Dataset/activity_labels.txt" file to obtain information about
     activity labels and names. Give the columns meaningful names.
     This step produces activities table
     
 activities  - (6 x 2) table that contains activity labels and names as defined in "UCI HAR Dataset/activity_labels.txt"
 		file; this table is used to map the activity labels used in the datasets to the readable activity names
 
-2.  Read in "./UCI HAR Dataset/features.txt" to obtain feature names for the features measured,
+2. Read in "./UCI HAR Dataset/features.txt" to obtain feature names for the features measured,
     The seconds column of the table loaded gives the list of feature column names that both 
     train and test datasets contain.
     This step produces features table and featureNames vector
@@ -90,6 +90,6 @@ aggregatedSet - (180 x 81) data frame that containes the aggregated data with me
 
 newDataSet - (180 x 82) the new tidy data set just before it is written to the file
 
-10.  Write the new data set to a file "TidyDataSet.txt" 
+10. Write the new data set to a file "TidyDataSet.txt" 
 
 
